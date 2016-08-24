@@ -4,6 +4,7 @@ contract Container {
     enum State { Sent, ApprovedForShipping, Loaded, ApprovedForCollecting, Collected }
     State currentState;
     address public owner;
+    address public captain;
     mapping (address => bool) public whitelist;
 
     modifier isWhitelisted {
@@ -52,4 +53,9 @@ contract Container {
     function updateOwnership(address newOwner) isWhitelisted {
         owner = newOwner;
     }
+    
+    function updateCaptain(adress newCaptain) is Whitelisted {
+        captain = newCaptain;
+    }
+    
 }
