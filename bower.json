@@ -1,0 +1,22 @@
+{
+  "name": "maersk-hackathon",
+  "homepage": "https://github.com/adrianbrink/move-the-world-hackathon-maersk",
+  "authors": [
+    "Adrian Brink <adrian@brink-holdings.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "web3": "^0.16.0"
+  }
+}
