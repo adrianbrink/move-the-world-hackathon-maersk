@@ -1,9 +1,11 @@
 contract Container {
     uint public id;
+    uint public price;
     string public contentDescription;
     enum State { Sent, ApprovedForShipping, Loaded, ApprovedForCollecting, Collected }
     State currentState;
     address public owner;
+    address public captain;
     mapping (address => bool) public whitelist;
 
     modifier isWhitelisted {
@@ -15,9 +17,10 @@ contract Container {
         //whitelist[???] = true;
     }
 
-    function specifyLoading(uint id, string description) {
-        id = id;
+    function specifyLoading(uint newId, string description, newPrice) {
+        id = newId;
         contentDescription = description;
+        price = newPrice;
     }
 
 
@@ -52,4 +55,9 @@ contract Container {
     function updateOwnership(address newOwner) isWhitelisted {
         owner = newOwner;
     }
+    
+    function updateCaptain(adress newCaptain) is Whitelisted {
+        captain = newCaptain;
+    }
+    
 }
