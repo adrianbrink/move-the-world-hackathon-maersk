@@ -9,19 +9,44 @@
 
     <!-- Bootstrap -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Web3 -->
     <script src="bower_components/web3/dist/web3.min.js"></script>
+    <script type="text/javascript" src="bower_components/bignumber.js/bignumber.min.js"></script>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- Ethereum connection -->
+    <script type="text/javascript">
+        var Web3 = require('web3');
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }
+
+        web3.setProvider(new web3.providers.HttpProvider("http://localhost:8545"));
+
+        function watchBalance() {
+            var coinbase = web3.eth.coinbase;
+            var originalBalance = web3.eth.getBalance(coinbase).toNumber();
+            document.getElementById('coinbase').innerText = 'coinbase: ' + coinbase;
+            document.getElementById('original').innerText = ' original balance: ' + originalBalance + '    watching...';
+            web3.eth.filter('latest').watch(function() {
+                var currentBalance = web3.eth.getBalance(coinbase).toNumber();
+                document.getElementById("current").innerText = 'current: ' + currentBalance;
+                document.getElementById("diff").innerText = 'diff:    ' + (currentBalance - originalBalance);
+            });
+        }
+    </script>
   </head>
   <body>
     <h1>Hello, world!</h1>
+    <h1>coinbase balance</h1>
+    <button type="button" onClick="watchBalance();">watch balance</button>
+    <div></div>
+    <div id="coinbase"></div>
+    <div id="original"></div>
+    <div id="current"></div>
+    <div id="diff"></div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
