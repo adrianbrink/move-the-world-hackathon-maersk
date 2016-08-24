@@ -1,5 +1,6 @@
 contract Container {
     uint public id;
+    uint public price;
     string public contentDescription;
     enum State { Sent, ApprovedForShipping, Loaded, ApprovedForCollecting, Collected }
     State currentState;
@@ -16,9 +17,10 @@ contract Container {
         //whitelist[???] = true;
     }
 
-    function specifyLoading(uint id, string description) {
-        id = id;
+    function specifyLoading(uint newId, string description, newPrice) {
+        id = newId;
         contentDescription = description;
+        price = newPrice;
     }
 
 
