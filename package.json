@@ -18,5 +18,8 @@
   "homepage": "https://github.com/adrianbrink/move-the-world-hackathon-maersk#readme",
   "devDependencies": {
     "gulp": "^3.9.1"
+  },
+  "dependencies": {
+    "mssql": "^3.3.0"
   }
 }
